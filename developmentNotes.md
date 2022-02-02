@@ -11,5 +11,4 @@
 ## Routes Required
 
 * A login route
-* A register routre
-
+* A signup route
