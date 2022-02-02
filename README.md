@@ -19,5 +19,6 @@ quicWork is intended to work as a simple method for jacobs students to share inf
 
 * a functionality may be added that allows for the creation of accounts of companies / employers which would help group postings.
 
+---
 
 
