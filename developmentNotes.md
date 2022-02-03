@@ -12,3 +12,11 @@
 
 * A login route
 * A signup route
+* A default homepage 
+* A specific page for a posting
+* A post job page (can be created as a modal)
+* An admin page for managing things
+* 
+
+
+
