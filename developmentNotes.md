@@ -23,6 +23,7 @@
 ## Development To-dos
 * create all the necessary routes with the necessary http methods
     * create route for registering a new user
+        * password hashing has been incorporated, now we need to know how we are going to index our data so that we can select a unique attribute of users to check that it doesn't exist before saving. We can most likely implement that under the already created pre-save middleware
     * create route for creating a new post
     * create route for deleting a post
 * 
