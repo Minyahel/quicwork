@@ -16,7 +16,13 @@
 * A specific page for a posting
 * A post job page (can be created as a modal)
 * An admin page for managing things
+
+
+
+***
+## Development To-dos
+* create all the necessary routes with the necessary http methods
+    * create route for registering a new user
+    * create route for creating a new post
+    * create route for deleting a post
 * 
-
-
-

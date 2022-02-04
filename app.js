@@ -11,6 +11,15 @@ var loginRouter = require('./routes/login');
 
 var app = express();
 
+const { mongoUrl } = require('./config');
+const connect = mongoose.connect(mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true})
+
+connect.then((db) => {
+  console.log("Database connected successfully!");
+}, (err) => { // we can supply two callbacks here, an occurence of err will automatically go to the second callback
+  console.log(err);
+})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -24,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // add routes with the specific sub-url they route to 
 app.use('/', indexRouter);
 app.use('/signup', signupRouter); 
+app.use('/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,7 +48,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
 module.exports = app;
