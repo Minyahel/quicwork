@@ -13,12 +13,22 @@ router.get('/', (req, res, next) => {
         password: req.body.password
     })
 
-    user.save((err, suc) => {
-        if (err) throw err;
-        else console.log("saved");
+    User.find({email: user.email}, (err, person) => {
+        if (err) next(err);
+        //if any person entry with the same email is found don't add that person account
+        if (person.length > 0) {
+            console.log(person);
+            next(new Error("Email already in use!"));
+            return;
+        } 
+        else {
+            user.save((err, suc) => {
+                if (err) throw err;
+                else console.log("saved");
+            })
+            res.send('received');
+        }
     })
-
-    res.send('received');
 })
 
 module.exports = router;
