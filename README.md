@@ -15,7 +15,7 @@ quicWork is intended to work as a simple method for jacobs students to share inf
 
 * An admin can delete all posts but a user can only delete a posting that they themselves put there.
 
-* There will be some kind of rating system and a commenting system that will allow users to comment on a listing or to give a thumbs up or down on a posting.
+* There will be some kind of rating system and a commenting system that will allow users to comment on a listing or to give a thumbs up or down on a posting
 
 * a functionality may be added that allows for the creation of accounts of companies / employers which would help group postings.
 
