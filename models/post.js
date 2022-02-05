@@ -20,13 +20,19 @@ var PostSchema = new mongoose.Schema({
     comments: [
         {
             body: String,
-            user: mongoose.Schema.Types.ObjectId,
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                refs: 'users'
+            },
             createdAt: Date
         }
     ],
     likes: [
         {
-            user: mongoose.Schema.Types.ObjectId,
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                refs: 'users'
+            },
             createdAt: Date
         }
     ]
