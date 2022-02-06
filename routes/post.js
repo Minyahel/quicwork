@@ -2,9 +2,15 @@ const express = require('express');
 var router = express.Router();
 var Post = require('../models/post');
 
-
+/*This router will handle everything related to handling posts
+  such as getting all posts, deleting posts as well as creating 
+  new posts
+*/
 router.get('/', (req, res, next) => {
-    res.send("this is a specific post page");
+    Post.find({}, (err, result) => {
+        if (err) next(err);
+        else res.json(result);
+    })
 }).post('/', (req, res, next) => {
     console.log(req.body);
 
@@ -24,7 +30,10 @@ router.get('/', (req, res, next) => {
             res.send("posted");
         }
     })
-
+}).get('/:postId', (req, res, next) => {
+    res.send("This will send the data for a specific post ")
+}).delete('/:postId', (req, res, next) => {
+    res.send("This will delete the post " + req.params.postId);
 })
 
 module.exports = router;

@@ -38,4 +38,4 @@
 * Adding a middle-ware pre-save to post to fetch username and making some changes to post schema as well
 * working on delete post route
 * need to reconsider how router are programmed and which ones can be compiled into one
-
+* removing unnecessay modules and compiling them into general header urls
