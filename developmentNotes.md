@@ -39,3 +39,5 @@
 * working on delete post route
 * need to reconsider how router are programmed and which ones can be compiled into one
 * removing unnecessay modules and compiling them into general header urls
+* unnecessary main routes have been deleted will implement the specific delete routes now
+* will use body for authentication now but will be implemented later

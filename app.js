@@ -6,8 +6,6 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
-var signupRouter = require('./routes/signup');
-var loginRouter = require('./routes/login');
 var postRouter = require('./routes/post');
 var userRouter = require('./routes/user');
 
@@ -34,8 +32,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // add routes with the specific sub-url they route to 
 app.use('/', indexRouter);
-app.use('/signup', signupRouter); 
-app.use('/login', loginRouter);
 app.use('/post', postRouter);
 app.use('/user', userRouter);
 
