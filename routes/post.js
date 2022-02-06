@@ -1,6 +1,6 @@
 const express = require('express');
 var router = express.Router();
-var Post = require('../models/post');
+var { Post, Comment } = require('../models/post');
 var User = require('../models/user');
 /*This router will handle everything related to handling posts
   such as getting all posts, deleting posts as well as creating 
@@ -31,7 +31,10 @@ router.get('/', (req, res, next) => {
         }
     })
 }).get('/:postId', (req, res, next) => {
-    res.send("This will send the data for a specific post ")
+    Post.findById(req.params.postId, (err, result) => {
+        if (err) next(err);
+        res.json(result);
+    })
 }).delete('/:postId', (req, res, next) => {
     if (!req.body.user) throw err;
     //get the user first, then get the post, then compare credentials to 
@@ -52,9 +55,27 @@ router.get('/', (req, res, next) => {
                     })
                 }
             })
-
         }
     })
+}).post('/:postId/comment', (req, res, next) => {
+    var post; 
+    Post.findById(req.params.postId, (err, result) => {
+        if (err) next(err);
+        post = result;
+        console.log(post);
+        post.comments.push(new Comment({
+            "body" : req.body,
+            "user" : req.user
+        }))
+        post.save((err, result) => {
+            if (err) next(err);
+            res.send("Comment created");
+        })
+    })
+}).delete('/:postId/comments/:commentId', (req, res, next) => {
+    res.send("deleting comment " + req.params.commentId + " from post " + req.params.postId);
+}).post('/:postId/like', (req, res, next) => {
+    res.send("Liking post " + req.params.postId);
 })
 
 module.exports = router;

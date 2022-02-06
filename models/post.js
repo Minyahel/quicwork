@@ -1,6 +1,18 @@
 const mongoose = require('mongoose');
 var UserSchema = require('./user');
 
+var CommentSchema = new mongoose.Schema({
+    body: String,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        refs: 'users'
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+})
+
 var PostSchema = new mongoose.Schema({
     user: {
         type: String
@@ -21,14 +33,7 @@ var PostSchema = new mongoose.Schema({
         type: String
     },
     comments: [
-        {
-            body: String,
-            user: {
-                type: mongoose.Schema.Types.ObjectId,
-                refs: 'users'
-            },
-            createdAt: Date
-        }
+        CommentSchema
     ],
     likes: [
         {
@@ -55,4 +60,10 @@ PostSchema.pre('save', function (next) {
 
 } )
 
-module.exports = mongoose.model('Post', PostSchema);
+const Post = mongoose.model('Post', PostSchema);
+const Comment  = mongoose.model('Comment', CommentSchema);
+
+module.exports = {
+    Post: Post,
+    Comment: Comment
+}

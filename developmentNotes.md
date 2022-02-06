@@ -27,7 +27,7 @@
         * some confusion here as to whether get the data from the body or from the form data and how react will send it later.  `will work with body for now`.
         * will have to add a middleware that checks the username of the posted by Id and attaches it to the user object, which also means I will have to update the post schema to hold the necessary data -  DONE
     * create route for deleting a post
-* Implement user/browser state management
+* Implement user/browser state management and authentication
 
 
 ***
@@ -39,5 +39,6 @@
 * working on delete post route
 * need to reconsider how router are programmed and which ones can be compiled into one
 * removing unnecessay modules and compiling them into general header urls
-* unnecessary main routes have been deleted will implement the specific delete routes now
-* will use body for authentication now but will be implemented later
+* working on the specific post route - DONE
+* working on posting comments and likes
+* new issue has arisen regarding comments and how they should be saved
