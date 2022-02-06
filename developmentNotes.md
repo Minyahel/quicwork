@@ -25,7 +25,7 @@
         * previous issue has been solved, email has been made unique
     * create route for creating a new post
         * some confusion here as to whether get the data from the body or from the form data and how react will send it later.  `will work with body for now`.
-        * will have to add a middleware that checks the username of the posted by Id and attaches it to the user object, which also means I will have to update the post schema to hold the necessary data
+        * will have to add a middleware that checks the username of the posted by Id and attaches it to the user object, which also means I will have to update the post schema to hold the necessary data -  DONE
     * create route for deleting a post
 * Implement user/browser state management
 
@@ -35,4 +35,7 @@
 * Implementing the basics of the react app so I can better understand how to structure the back-end
 * Working on the getting posts and displaying them logic
 * investigating how referencing will affect modeling choice (no relevant information found at the moment)
+* Adding a middle-ware pre-save to post to fetch username and making some changes to post schema as well
+* working on delete post route
+* need to reconsider how router are programmed and which ones can be compiled into one
 

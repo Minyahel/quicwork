@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 var UserSchema = require('./user');
 
 var PostSchema = new mongoose.Schema({
+    user: {
+        type: String
+    },
     postedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users',
@@ -37,5 +40,19 @@ var PostSchema = new mongoose.Schema({
         }
     ]
 })
+
+//middle ware that will run before a post object is
+PostSchema.pre('save', function (next) {
+    var post = this;
+
+    UserSchema.findById(post.postedBy, (err, result) => {
+        if (err) next (err);
+        else {
+            post.user = result.username
+            next();
+        }
+    })
+
+} )
 
 module.exports = mongoose.model('Post', PostSchema);
