@@ -90,15 +90,12 @@ router
     );
   })
   .post("/:postId/like", (req, res, next) => {
-    //first find the post, then check if the user has already liked the post, if not push a new like to the list
-    //will need the userid through body
     Post.find(
       { _id: req.params.postId, "likes.user": req.body.user },
       (err, result) => {
         if (err) next(err);
-        // console.log(result[0].likes.length);
         else {
-          if (result.length > 0) {
+          if (result.length > 0) { //if the user has already liked the post, go on to delete the like
             var count = 0;
             for (; count < result[0].likes.length; count++)
               if (result[0].likes[count].user.toString() === req.body.user) break;
@@ -107,7 +104,7 @@ router
               if (err) next(err);
               else res.json(result);
             });
-          } else {
+          } else { //if the user hasn't liked the post, fetch the post again (bad) and add the like to the post
             Post.findById(req.params.postId, (err, result) => {
                 if (err) next(err);
                 else {
@@ -124,22 +121,6 @@ router
             })
           }
         }
-        // if (err) next(err);
-        // else {
-        //     result.find({ 'likes.user' : req.body.user}, (err, result) => {
-        //         if (err) next (err);
-        //         else res.json(result);
-        //         // else {
-        //         //     result.likes.push(new Like({
-        //         //         "user": req.body.user
-        //         //     }))
-        //         //     result.save((err, result) => {
-        //         //         if (err) next(err);
-        //         //         else res.json(result);
-        //         //     })
-        //         // }
-        //     })
-        // }
       }
     );
   });

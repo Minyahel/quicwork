@@ -10,7 +10,12 @@ router.get('/', (req, res, next) => {
         }
     })
 }).post('/login', (req, res, next) => {
-    res.send("Welcome back");
+    req.session.user = "the user";
+    req.session.save((err, result) => {
+        if (err) next(err);
+        else res.send(req.session.user);
+    })
+    
 }).post('/signup', (req, res, next) => {
     var user = new User({
         username: req.body.username,

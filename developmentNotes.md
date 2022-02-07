@@ -49,3 +49,10 @@
 * new issue has arisen regarding comments and how they should be saved
 * It seems the best way to save the sub-documents is to create new schemas for them. Will do this for likes as well.
 * Toggling post like has implemented
+* Time to implement the authentication method (cookie and whatnot), so would be best to read about the possible methods to use to do that
+* need to make a decision whether to use JWT or sessions for user authentication 
+* It appears that JWT's create a huge security issue and keeping a record of them would be neccessary to create a secure system. However, it is still not clear whether the system needs what JWT lacks
+* I think the easiest thing to do at the moment would be to implemement it using a session as it seems like it is more secure, will explore jwt technique in another project
+* We want to use a production ready session store so will choose one with that regard
+* Have decided to use mongodb for the session as well to make things simpler, will checkout redis next time
+* Managed to setup the session store on mongodb, will work next to implement the session authentication on all the routes and how to do that
