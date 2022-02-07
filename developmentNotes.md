@@ -7,6 +7,8 @@
 * A post datatype
     * fields for text, thumbs up, thumbs down, comments, site (link), posted by, post date
     * can be further expanded to include things like the pay, contract times or other bells and whistles
+* A comment datatype that knows who made the comment and the date the comment was made, can later implement nested likes (likes for comments and subcomments but will need an efficient way to do this) and replies
+* A like schema that knows who made the like, we don't need a time of the liking for this
 
 ## Routes Required
 
@@ -28,8 +30,11 @@
         * will have to add a middleware that checks the username of the posted by Id and attaches it to the user object, which also means I will have to update the post schema to hold the necessary data -  DONE
     * create route for deleting a post
 * Implement user/browser state management and authentication
-
-
+* Can serve our own mongodb on remote, will have to look into that tho
+* Need to make post liking a toggle logic
+* Better implement the authentication logic before the app grows too much that it becomes a hassle to change it later
+* Should also check where to use arrow functions and not
+* Actual function of next() needs to be checked as well 
 ***
 ## Timeline
 * Implementing the basics of the react app so I can better understand how to structure the back-end
@@ -42,3 +47,5 @@
 * working on the specific post route - DONE
 * working on posting comments and likes
 * new issue has arisen regarding comments and how they should be saved
+* It seems the best way to save the sub-documents is to create new schemas for them. Will do this for likes as well.
+* Toggling post like has implemented

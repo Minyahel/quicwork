@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 var UserSchema = require('./user');
 
+//sub schemas created since it was found to be necessary
 var CommentSchema = new mongoose.Schema({
     body: String,
     user: {
@@ -10,6 +11,13 @@ var CommentSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    }
+})
+
+var LikeSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        refs: 'users'
     }
 })
 
@@ -32,18 +40,8 @@ var PostSchema = new mongoose.Schema({
     site: {
         type: String
     },
-    comments: [
-        CommentSchema
-    ],
-    likes: [
-        {
-            user: {
-                type: mongoose.Schema.Types.ObjectId,
-                refs: 'users'
-            },
-            createdAt: Date
-        }
-    ]
+    comments: [ CommentSchema ],
+    likes: [ LikeSchema ]
 })
 
 //middle ware that will run before a post object is
@@ -62,8 +60,10 @@ PostSchema.pre('save', function (next) {
 
 const Post = mongoose.model('Post', PostSchema);
 const Comment  = mongoose.model('Comment', CommentSchema);
+const Like = mongoose.model('Like', LikeSchema);
 
 module.exports = {
     Post: Post,
-    Comment: Comment
+    Comment: Comment,
+    Like: Like
 }
