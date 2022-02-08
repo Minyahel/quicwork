@@ -56,3 +56,12 @@
 * We want to use a production ready session store so will choose one with that regard
 * Have decided to use mongodb for the session as well to make things simpler, will checkout redis next time
 * Managed to setup the session store on mongodb, will work next to implement the session authentication on all the routes and how to do that
+* Figuring out we can attach user information to a session
+* Need to know how to secure user identification when storing it in a session cookie
+* General Idea of user authentication is working, just need to protect the remaining routes now
+* I have created the necessary protection, but it seems like writing a custom middleware would be the best option here, will check
+* Have made middleware for authentication, moving onto post routes to perform authentication
+* Need to figure out how to make asynchronous code synchronous 
+* Need to create a way for either an admin or the respective user to complete some actions
+* Need to create middleware that will make sure that comments that are in a post actually exist
+* Specifically check out validate method for schemas as that might solve your issue

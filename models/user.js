@@ -32,24 +32,20 @@ UserSchema.pre('save',function (next) {
 
     if (!user.isModified('password')) return next();
 
-    bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+    bcrypt.hash(user.password, SALT_WORK_FACTOR, function (err, hash) {
         if (err) return next(err);
 
-        bcrypt.hash(user.password, salt, (err, hash) => {
-            if (err) return next(err);
+        user.password = hash;
 
-            user.password = hash;
-
-            next();
-        })
+        next();
     })
 })
 
 /*we are writing a custom method for our userschema here that we can use
   to compare a new password to a new one as we know how bcrypt works
 */
-UserSchema.methods.comparePassword = (candidatePassword, cb) => {
-    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+UserSchema.methods.comparePassword = function (candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {        
         if (err) return cb(err);
         cb(null, isMatch);
     })

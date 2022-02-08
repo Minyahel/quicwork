@@ -3,6 +3,7 @@ const { Each } = require("jade/lib/nodes");
 var router = express.Router();
 var { Post, Comment, Like } = require("../models/post");
 var User = require("../models/user");
+const { userAuth } = require("../util/authentication");
 /*This router will handle everything related to handling posts
   such as getting all posts, deleting posts as well as creating 
   new posts
@@ -10,15 +11,13 @@ var User = require("../models/user");
 router
   .get("/", (req, res, next) => {
     Post.find({}, (err, result) => {
-      if (err) next(err);
+      if (err) return next(err);
       else res.json(result);
     });
   })
-  .post("/", (req, res, next) => {
-    console.log(req.body);
-
+  .post("/", userAuth, (req, res, next) => {
     var newPost = new Post({
-      postedBy: req.body.postedBy,
+      postedBy: req.session.userId,
       postTime: req.body.postTime,
       description: req.body.description,
       site: req.body.site,
@@ -27,67 +26,56 @@ router
     });
 
     newPost.save((err, succ) => {
-      if (err) next(err);
+      if (err) return next(err);
       else {
-        console.log("saved");
-        res.send("posted");
+        res.send("Successfuly posted");
       }
     });
   })
   .get("/:postId", (req, res, next) => {
     Post.findById(req.params.postId, (err, result) => {
-      if (err) next(err);
+      if (err) return next(err);
       res.json(result);
     });
   })
-  .delete("/:postId", (req, res, next) => {
-    if (!req.body.user) throw err;
-    //get the user first, then get the post, then compare credentials to
-    //delete or not
-    User.findById(req.body.user, (err, result) => {
-      var user = result;
-      if (err) next(err);
+  .delete("/:postId", userAuth, (req, res, next) => {
+    var post;
+    Post.findById(req.params.postId, (err, result) => {
+      if (err) return next(err);
+      post = result;
+      if (post.postedBy.toString() !== req.session.userId)
+        return next(new Error("Not admin or poster!"));
       else {
-        var post;
-        Post.findById(req.params.postId, (err, result) => {
-          if (err) next(err);
-          post = result;
-          if (!user.admin && post.postedBy.toString() !== req.body.user)
-            next(new Error("Not admin or poster!"));
-          else {
-            Post.findByIdAndDelete(req.params.postId, (err, result) => {
-              if (err) next(err);
-              else res.send("Successfuly deleted post!");
-            });
-          }
+        Post.findByIdAndDelete(req.params.postId, (err, result) => {
+          if (err) return next(err);
+          else res.send("Successfuly deleted post!");
         });
       }
     });
   })
-  .post("/:postId/comment", (req, res, next) => {
+  .post("/:postId/comment", userAuth, (req, res, next) => {
     var post;
     Post.findById(req.params.postId, (err, result) => {
-      if (err) next(err);
+      if (err) return next(err);
       post = result;
       post.comments.push(
         new Comment({
           body: req.body,
-          user: req.user,
+          user: req.session.userId,
         })
       );
       post.save((err, result) => {
-        if (err) next(err);
-        res.send("Comment created");
+        if (err) return next(err);
+        res.send("Successfuly created comment!");
       });
     });
   })
-  .delete("/:postId/comments/:commentId", (req, res, next) => {
-    res.send(
-      "deleting comment " +
-        req.params.commentId +
-        " from post " +
-        req.params.postId
-    );
+  .delete("/:postId/comments/:commentId", userAuth, (req, res, next) => {
+    var post;
+	Comment.findOneAndRemove({"_id" : req.params.commentId, "user" : req.session.userId}, (err, result) =>{
+		if (err) return next(err);
+		res.send("Successfuly deleted comment");
+	})
   })
   .post("/:postId/like", (req, res, next) => {
     Post.find(
@@ -95,30 +83,33 @@ router
       (err, result) => {
         if (err) next(err);
         else {
-          if (result.length > 0) { //if the user has already liked the post, go on to delete the like
+          if (result.length > 0) {
+            //if the user has already liked the post, go on to delete the like
             var count = 0;
             for (; count < result[0].likes.length; count++)
-              if (result[0].likes[count].user.toString() === req.body.user) break;
+              if (result[0].likes[count].user.toString() === req.body.user)
+                break;
             result[0].likes.splice(count, 1);
             result[0].save((err, result) => {
               if (err) next(err);
               else res.json(result);
             });
-          } else { //if the user hasn't liked the post, fetch the post again (bad) and add the like to the post
+          } else {
+            //if the user hasn't liked the post, fetch the post again (bad) and add the like to the post
             Post.findById(req.params.postId, (err, result) => {
-                if (err) next(err);
-                else {
-                    result.likes.push(
-                        new Like({
-                          user: req.body.user,
-                        })
-                      );
-                      result.save((err, result) => {
-                        if (err) next(err);
-                        else res.json(result);
-                      });        
-                }
-            })
+              if (err) next(err);
+              else {
+                result.likes.push(
+                  new Like({
+                    user: req.body.user,
+                  })
+                );
+                result.save((err, result) => {
+                  if (err) next(err);
+                  else res.json(result);
+                });
+              }
+            });
           }
         }
       }

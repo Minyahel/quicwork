@@ -13,7 +13,7 @@ var userRouter = require("./routes/user");
 
 var app = express();
 
-const { mongoUrl } = require("./config");
+const { mongoUrl, mongoStoreUrl } = require("./util/config");
 const connect = mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -46,7 +46,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: mongoStore.create({
-      mongoUrl: "mongodb+srv://mhaile:F4AvsRdoUXcjz3ZB@cluster0.mp73v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+      mongoUrl: mongoStoreUrl,
       ttl: 14 * 24 * 60 * 60,
       autoRemove: "native"
     })
