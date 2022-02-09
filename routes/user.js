@@ -50,7 +50,6 @@ router
       if (err) next(err);
       //if any person entry with the same email is found don't add that person account
       if (person.length > 0) {
-        console.log(person);
         next(new Error("Email already in use!"));
         return;
       } else {

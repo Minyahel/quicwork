@@ -65,3 +65,4 @@
 * Need to create a way for either an admin or the respective user to complete some actions
 * Need to create middleware that will make sure that comments that are in a post actually exist
 * Specifically check out validate method for schemas as that might solve your issue
+* Will also start working on branches as I work on features today - this will allow for some preplanning of what feature is being added

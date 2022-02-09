@@ -58,9 +58,10 @@ router
     Post.findById(req.params.postId, (err, result) => {
       if (err) return next(err);
       post = result;
+
       post.comments.push(
         new Comment({
-          body: req.body,
+          body: req.body.body,
           user: req.session.userId,
         })
       );
@@ -72,10 +73,26 @@ router
   })
   .delete("/:postId/comments/:commentId", userAuth, (req, res, next) => {
     var post;
-	Comment.findOneAndRemove({"_id" : req.params.commentId, "user" : req.session.userId}, (err, result) =>{
-		if (err) return next(err);
-		res.send("Successfuly deleted comment");
-	})
+    Post.findById(req.params.postId, (err, result) => {
+      if (err) return next(err);
+      post = result;
+
+      let i = 0;
+      for (; i < post.comments.length; i++) {
+        if (post.comments[i]._id.toString() === req.params.commentId) break;
+      }
+
+      if (i == post.comments.length)
+        return cb(new Error("Comment doesn't exist"), null);
+
+      if (post.comments[i].user.toString() !== req.session.userId)
+        return next(new Error("Can't delete someone else's comment!"));
+
+      post.deleteComment(i, (err, result) => {
+        if (err) return next(err);
+        res.send("Successfuly deleted comment!");
+      });
+    });
   })
   .post("/:postId/like", (req, res, next) => {
     Post.find(
