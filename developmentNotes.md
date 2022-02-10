@@ -35,6 +35,8 @@
 * Better implement the authentication logic before the app grows too much that it becomes a hassle to change it later
 * Should also check where to use arrow functions and not
 * Actual function of next() needs to be checked as well 
+- [ ] Update mongoose usages of unnecessary saves to update
+- [ ] Improve error reporting from the server side
 ***
 ## Timeline
 * Implementing the basics of the react app so I can better understand how to structure the back-end
@@ -75,3 +77,7 @@
 * Successfuly connected, now fetching posts and displaying them
 * Creating necessary routes and related components
 * Implemented the login functionality, and the create post functionality 
+* Need to implement proper communication about logging in and errors with the server
+* Need to look at implementing update for mongodb as that will really help you save unnecessary lines of code
+  
+  
