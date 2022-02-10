@@ -73,3 +73,5 @@
 * Currently desinging the front end using figma
 * Working to connect client and backend
 * Successfuly connected, now fetching posts and displaying them
+* Creating necessary routes and related components
+* Implemented the login functionality, and the create post functionality 

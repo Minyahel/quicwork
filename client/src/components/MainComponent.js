@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 import PostsComponent from './PostsComponent';
+import Login from './LoginComponent';
+import Home from './HomeComponent';
+import Signup from './SignupComponent';
+import CreatePost from './CreatePostComponent';
 
 class Main extends Component {
     constructor(props) {
@@ -31,7 +37,13 @@ class Main extends Component {
         return (
             <>
                 <Header />
-                {posts ? <PostsComponent posts={posts} /> : <p>Loading</p>}
+                <Routes>
+                    <Route path="/" element={<Home posts={posts} />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/createpost" element={<CreatePost />} />
+                </Routes>
+                <Footer />
             </>
         );
     }

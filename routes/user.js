@@ -21,6 +21,7 @@ router
     })
     .post('/login', (req, res, next) => {
         //if already logged in, no need to do it again
+        console.log(req.body);
         if (req.session.userId) {
             console.log(req.session);
             res.send('You are already logged in');
