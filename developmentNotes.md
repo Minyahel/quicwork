@@ -67,3 +67,7 @@
 * Specifically check out validate method for schemas as that might solve your issue
 * Will also start working on branches as I work on features today - this will allow for some preplanning of what feature is being added
 * Thinking of working on adding comments next
+* I just realized that I did most of my backend work implementing callback functions, which is not bad but interesting to know
+* My responses are cryptic as well and I need to work on those as well, as such I should look at the required things that are appropriate to add into responses
+* Starting work on the front end
+* Currently desinging the front end using figma
