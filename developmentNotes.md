@@ -72,3 +72,4 @@
 * Starting work on the front end
 * Currently desinging the front end using figma
 * Working to connect client and backend
+* Successfuly connected, now fetching posts and displaying them

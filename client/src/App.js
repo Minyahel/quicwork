@@ -7,14 +7,6 @@ import Main from './components/MainComponent';
 function App() {
     const [data, setDate] = React.useState(null);
 
-    React.useEffect(() => {
-        fetch('/post')
-            .then((res) => res.json())
-            .then((res) => {
-                console.log(res);
-            });
-    });
-
     return <Main />;
 }
 
