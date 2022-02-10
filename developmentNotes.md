@@ -71,3 +71,4 @@
 * My responses are cryptic as well and I need to work on those as well, as such I should look at the required things that are appropriate to add into responses
 * Starting work on the front end
 * Currently desinging the front end using figma
+* Working to connect client and backend

@@ -8,7 +8,11 @@ function App() {
     const [data, setDate] = React.useState(null);
 
     React.useEffect(() => {
-        fetch('/').then((res) => console.log(res.json()));
+        fetch('/post')
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res);
+            });
     });
 
     return <Main />;
