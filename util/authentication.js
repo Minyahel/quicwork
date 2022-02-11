@@ -3,7 +3,6 @@ const customException = require('./customException');
 
 module.exports = {
     adminAuth: (req, res, next) => {
-        console.log('here');
         //if a session has not been created for the user
         if (!req.session.userId)
             return next(new Error('You are not logged in'));
@@ -18,7 +17,6 @@ module.exports = {
                 return next(
                     customException(403, 'Insufficient Permissions For Action')
                 );
-            console.log('Here');
             next();
         });
     },

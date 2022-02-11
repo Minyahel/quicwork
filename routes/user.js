@@ -25,7 +25,6 @@ router
         //if already logged in, no need to do it again
         // TODO handle login whilst already logged in properly
         if (req.session.userId) {
-            console.log(req.session);
             res.send('You are already logged in');
             return;
         }

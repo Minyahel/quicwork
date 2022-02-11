@@ -19,6 +19,7 @@ const connect = mongoose.connect(mongoUrl, {
     useUnifiedTopology: true
 });
 
+// TODO fix error handling if database connection fails
 connect.then(
     (db) => {
         console.log('Database connected successfully!');
