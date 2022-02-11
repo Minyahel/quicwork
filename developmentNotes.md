@@ -36,8 +36,9 @@
 * Should also check where to use arrow functions and not
 * Actual function of next() needs to be checked as well 
 - [x] Improve mongoose usages of unnecessary saves to update
-- [ ] Improve error reporting from the server side
-- [ ] 
+- [x] Improve error reporting from the server side
+- [ ] Implement Some more routes for the client, don't focus on styling just yet
+- [ ] work on displaying post
 ## :bug: Bugs 
 ***
 - :triangular_flag_on_post: Potential Bug with login logic

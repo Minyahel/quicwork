@@ -7,6 +7,7 @@ import Login from './LoginComponent';
 import Home from './HomeComponent';
 import Signup from './SignupComponent';
 import CreatePost from './CreatePostComponent';
+import SinglePost from './SinglePostComponent';
 
 class Main extends Component {
     constructor(props) {
@@ -41,6 +42,7 @@ class Main extends Component {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/createpost" element={<CreatePost />} />
+                    <Route path="/post/:postId" element={<SinglePost />} />
                 </Routes>
                 <Footer />
             </>
