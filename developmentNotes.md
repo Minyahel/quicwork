@@ -35,11 +35,12 @@
 * Better implement the authentication logic before the app grows too much that it becomes a hassle to change it later
 * Should also check where to use arrow functions and not
 * Actual function of next() needs to be checked as well 
-- [ ] Improve mongoose usages of unnecessary saves to update
+- [x] Improve mongoose usages of unnecessary saves to update
 - [ ] Improve error reporting from the server side
 - [ ] 
 ## :bug: Bugs 
 ***
+- :triangular_flag_on_post: Potential Bug with login logic
 ## Timeline
 * Implementing the basics of the react app so I can better understand how to structure the back-end
 * Working on the getting posts and displaying them logic
