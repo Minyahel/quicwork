@@ -20,7 +20,7 @@
 * An admin page for managing things
 
 ***
-## Development To-dos
+## :white_check_mark: Development To-dos
 * create all the necessary routes with the necessary http methods
     * create route for registering a new user
         * password hashing has been incorporated, now we need to know how we are going to index our data so that we can select a unique attribute of users to check that it doesn't exist before saving. We can most likely implement that under the already created pre-save middleware
@@ -35,8 +35,10 @@
 * Better implement the authentication logic before the app grows too much that it becomes a hassle to change it later
 * Should also check where to use arrow functions and not
 * Actual function of next() needs to be checked as well 
-- [ ] Update mongoose usages of unnecessary saves to update
+- [ ] Improve mongoose usages of unnecessary saves to update
 - [ ] Improve error reporting from the server side
+- [ ] 
+## :bug: Bugs 
 ***
 ## Timeline
 * Implementing the basics of the react app so I can better understand how to structure the back-end
