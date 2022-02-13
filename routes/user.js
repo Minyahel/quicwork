@@ -18,14 +18,14 @@ router
         var users = User.find({}, (err, result) => {
             if (err)
                 return next(customException(500, "Couldn't Load Users", err));
-            res.json(result);
+            res.status(200).json(result);
         });
     })
     .post('/login', (req, res, next) => {
         //if already logged in, no need to do it again
         // TODO handle login whilst already logged in properly
         if (req.session.userId) {
-            res.send('You are already logged in');
+            next(customException(208, 'User already logged in'));
             return;
         }
         //check if required data for logging in has been provided
@@ -48,7 +48,9 @@ router
                                 customException(400, 'Wrong Email or Password')
                             );
                         req.session.userId = user._id;
-                        res.send('Welcome ' + user.username);
+                        res.status(200).json({
+                            message: 'Successfully logged in'
+                        });
                     }
                 );
             } else {
@@ -59,11 +61,10 @@ router
     .post('/logout', (req, res, next) => {
         //destroy the session when logging out
         req.session.destroy();
-        res.send('Successfuly logged out');
+        res.status(200).json({ message: 'Successfuly logged out' });
     })
     .post('/signup', (req, res, next) => {
         //check if email is already used
-        console.log(req.body);
         User.find({ email: req.body.email }, (err, person) => {
             if (err) return next(customException(500, 'Server Error', err));
             //if any person entry with the same email is found don't add that person account
@@ -84,7 +85,9 @@ router
                     if (err) next(customException(500, 'Server Error', err));
                     else {
                         req.session.userId = user._id;
-                        res.send('Successfuly signed up');
+                        res.status(200).json({
+                            message: 'Successfuly signed up'
+                        });
                     }
                 });
             }
@@ -95,7 +98,7 @@ router
         User.findByIdAndDelete(req.params.userId, (err, result) => {
             if (err)
                 return next(customException(500, "Couldn't Find User", err));
-            res.json('Successfuly deleted user');
+            res.status(200).json({ message: 'Successfuly deleted user' });
         });
     });
 

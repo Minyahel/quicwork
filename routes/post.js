@@ -23,7 +23,7 @@ router
         Post.find({}, (err, result) => {
             if (err)
                 return next(customException(500, "Couldn't Fetch Posts", err));
-            else res.json(result);
+            res.status(200).json(result);
         });
     })
     .post('/', userAuth, (req, res, next) => {
@@ -53,7 +53,7 @@ router
         Post.findById(req.params.postId, (err, result) => {
             if (err)
                 return next(customException(500, "Couldn't Find Post", err));
-            res.json(result);
+            res.status(200).json(result);
         });
     })
     .delete('/:postId', userAuth, (req, res, next) => {
@@ -84,8 +84,7 @@ router
                             )
                         );
                     else
-                        res.status.json({
-                            status: 'success',
+                        res.status(200).json({
                             message: 'Successfuly Deleted'
                         });
                 });
@@ -156,8 +155,7 @@ router
                     return next(
                         customException(500, "Couldn't Delete Comment", err)
                     );
-                res.status.json({
-                    status: 'success',
+                res.status(200).json({
                     message: 'Successfuly Deleted'
                 });
             });
@@ -194,7 +192,7 @@ router
                                         err
                                     )
                                 );
-                            else res.json(result);
+                            else res.status(200).json(result);
                         });
                     } else {
                         //if the user hasn't liked the post, fetch the post again (bad) and add the like to the post
@@ -224,7 +222,7 @@ router
                                                 err
                                             )
                                         );
-                                    else res.json(result);
+                                    else res.status(200).json(result);
                                 });
                             }
                         });

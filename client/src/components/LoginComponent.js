@@ -22,9 +22,13 @@ class Login extends Component {
                 email: this.state.email,
                 password: this.state.password
             })
-        }).then((res) => {
-            console.log(res.body);
-        });
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((res) => {
+                console.log(res);
+            });
     }
 
     handleEmailChange(e) {
