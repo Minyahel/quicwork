@@ -63,7 +63,8 @@ router
     })
     .post('/signup', (req, res, next) => {
         //check if email is already used
-        User.find({ email: user.email }, (err, person) => {
+        console.log(req.body);
+        User.find({ email: req.body.email }, (err, person) => {
             if (err) return next(customException(500, 'Server Error', err));
             //if any person entry with the same email is found don't add that person account
             // TODO handle the case where user is trying to signup with an already used email
@@ -94,7 +95,7 @@ router
         User.findByIdAndDelete(req.params.userId, (err, result) => {
             if (err)
                 return next(customException(500, "Couldn't Find User", err));
-            res.send('Successfuly deleted user');
+            res.json('Successfuly deleted user');
         });
     });
 
