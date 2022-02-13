@@ -41,8 +41,9 @@
 - [x] work on displaying individual post
 - [ ] Implement custom hooks for loading data
 - [ ] Need to attach username to comment object for easy access
-- [ ] Implement signup page
+- [x] Implement signup page
 - [ ] Improve success reporting from the server side
+- [ ] Implement error receiving and reporting from the client side
 ## :bug: Bugs 
 ***
 - :triangular_flag_on_post: Potential Bug with login logic
