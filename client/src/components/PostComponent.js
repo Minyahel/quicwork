@@ -4,19 +4,10 @@ import { Link } from 'react-router-dom';
 export default (props) => {
     console.log('props: ' + JSON.stringify(props));
 
-    function handlePostClick(e, postId) {
-        console.log(postId);
-    }
-
     return (
         <>
             <Link to={'/post/' + props.postId}>
                 <div
-                    //defining arrow function for passing custom value to click handler
-                    //since onclick only sends event e
-                    onClick={(e) => {
-                        handlePostClick(e, props.postId);
-                    }}
                     style={{
                         backgroundColor: '#EBEBEB',
                         width: 'fit-content',

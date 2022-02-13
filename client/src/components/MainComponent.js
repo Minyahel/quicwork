@@ -26,6 +26,7 @@ class Main extends Component {
         fetch('/post')
             .then((res) => res.json())
             .then((res) => {
+                console.log(res);
                 this.setState({
                     posts: res
                 });

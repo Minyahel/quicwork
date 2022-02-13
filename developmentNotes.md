@@ -38,7 +38,9 @@
 - [x] Improve mongoose usages of unnecessary saves to update
 - [x] Improve error reporting from the server side
 - [ ] Implement Some more routes for the client, don't focus on styling just yet
-- [ ] work on displaying post
+- [ ] work on displaying individual post
+- [ ] Implement custom hooks for loading data
+- [ ] Need to attach username to comment object for easy access
 ## :bug: Bugs 
 ***
 - :triangular_flag_on_post: Potential Bug with login logic
