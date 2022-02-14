@@ -8,6 +8,7 @@ import Home from './HomeComponent';
 import Signup from './SignupComponent';
 import CreatePost from './CreatePostComponent';
 import SinglePost from './SinglePostComponent';
+import { connect } from 'react-redux';
 
 class Main extends Component {
     constructor(props) {
@@ -23,6 +24,15 @@ class Main extends Component {
     }
 
     fetchData() {
+        fetch('/user/checkSession')
+            .then((res) => res.json())
+            .then((res) => {
+                if (res.message === true) {
+                    this.props.dispatch({
+                        type: 'LOGIN'
+                    });
+                }
+            });
         fetch('/post')
             .then((res) => res.json())
             .then((res) => {
@@ -41,7 +51,9 @@ class Main extends Component {
                     <Route path="/" element={<Home posts={posts} />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
-                    <Route path="/createpost" element={<CreatePost />} />
+                    {this.props.activeSession && (
+                        <Route path="/createpost" element={<CreatePost />} />
+                    )}
                     <Route path="/post/:postId" element={<SinglePost />} />
                 </Routes>
                 <Footer />
@@ -50,4 +62,17 @@ class Main extends Component {
     }
 }
 
-export default Main;
+//loads state from store
+const mapStateToProps = (state) => {
+    return { activeSession: state.activeSession };
+};
+
+//loads dispatch type from store
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch
+    };
+};
+
+//connects the required functions to the component
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

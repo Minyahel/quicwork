@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default (props) => {
     const [username, setUsername] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
+
+    const activeSession = useSelector((state) => state.activeSession);
+    const dispatch = useDispatch();
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -18,11 +22,12 @@ export default (props) => {
                 email: email,
                 password: password
             })
-        })
-            .then((res) => {
-                res.json();
-            })
-            .then((res) => {});
+        }).then((res) => {
+            if (res.status === 200)
+                dispatch({
+                    type: 'LOGIN'
+                });
+        });
     }
 
     return (

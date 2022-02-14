@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Login extends Component {
     constructor(props) {
@@ -30,7 +31,10 @@ class Login extends Component {
                 return res.json();
             })
             .then((res) => {
-                console.log(res);
+                console.log('Calling login');
+                this.props.dispatch({
+                    type: 'LOGIN'
+                });
             });
     }
 
@@ -76,4 +80,16 @@ class Login extends Component {
     }
 }
 
-export default Login;
+//function for loading required element from store
+const mapStateToProps = (state) => {
+    return { activeSession: state.activeSession };
+};
+
+//function for loading dispatch object from store
+const mapDispatchToProps = (dispatch) => {
+    return { dispatch };
+};
+
+//connect connects the redux functions and passes the return values as props
+//to the class component
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
