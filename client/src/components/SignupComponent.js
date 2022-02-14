@@ -22,9 +22,7 @@ export default (props) => {
             .then((res) => {
                 res.json();
             })
-            .then((res) => {
-                console.log(res);
-            });
+            .then((res) => {});
     }
 
     return (

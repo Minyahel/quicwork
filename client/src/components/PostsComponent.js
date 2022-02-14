@@ -3,11 +3,9 @@ import React from 'react';
 import Post from './PostComponent';
 
 function PostsComponent(props) {
-    console.log(props.posts);
     const post = props.posts.map((post, i) => {
         return <p key={i}>{post.desription}</p>;
     });
-    console.log(post);
 
     //function for handling onClick of individual posts
     //serves to identify which post is actually being clicked on

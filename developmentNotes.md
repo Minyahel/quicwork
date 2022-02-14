@@ -89,5 +89,5 @@
 * Implemented the login functionality, and the create post functionality 
 * Need to implement proper communication about logging in and errors with the server
 * Need to look at implementing update for mongodb as that will really help you save unnecessary lines of code
-  
+* I hadn't been returning the values of res.json() as a promise and hence was getting undefined values. Probably the reason why i was getting very weird behavior while working on the signup functionality 
   
