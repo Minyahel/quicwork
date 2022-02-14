@@ -44,7 +44,8 @@
 - [x] Implement signup page
 - [ ] Improve success reporting from the server side
 - [ ] Implement error receiving and reporting from the client side
-- [ ] Evaluate where you need to implement catch cases
+- [ ] Evaluate where you need to implement catch cases(in server)
+- [ ] Implement redux store for managing user singed in status and global states
 ## :bug: Bugs 
 ***
 - :triangular_flag_on_post: Potential Bug with login logic
