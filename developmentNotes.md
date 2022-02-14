@@ -44,6 +44,7 @@
 - [x] Implement signup page
 - [ ] Improve success reporting from the server side
 - [ ] Implement error receiving and reporting from the client side
+- [ ] Evaluate where you need to implement catch cases
 ## :bug: Bugs 
 ***
 - :triangular_flag_on_post: Potential Bug with login logic
