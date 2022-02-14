@@ -100,6 +100,16 @@ router
                 return next(customException(500, "Couldn't Find User", err));
             res.status(200).json({ message: 'Successfuly deleted user' });
         });
+    })
+    .get('/checkSession', (req, res, next) => {
+        if (req.session.userId)
+            res.status(200).json({
+                message: 'true'
+            });
+        else
+            res.status(200).json({
+                message: 'false'
+            });
     });
 
 module.exports = router;

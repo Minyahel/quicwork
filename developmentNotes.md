@@ -42,13 +42,15 @@
 - [ ] Implement custom hooks for loading data
 - [ ] Need to attach username to comment object for easy access
 - [x] Implement signup page
-- [ ] Improve success reporting from the server side
+- [x] Improve success reporting from the server side
 - [ ] Implement error receiving and reporting from the client side
 - [ ] Evaluate where you need to implement catch cases(in server)
-- [ ] Implement redux store for managing user singed in status and global states
+- [ ] Implement redux store for managing user signed in status and global states
+- [ ] protect the react routes based on posting in a clean way
 ## :bug: Bugs 
 ***
-- :triangular_flag_on_post: Potential Bug with login logic
+- 🚩 Potential Bug with login logic
+- 🚩 Bug with user logged in logged out state when signing up
 ## Timeline
 * Implementing the basics of the react app so I can better understand how to structure the back-end
 * Working on the getting posts and displaying them logic
