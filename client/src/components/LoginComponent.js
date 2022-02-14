@@ -5,14 +5,15 @@ class Login extends Component {
         super(props);
         this.state = {
             email: null,
-            password: null
+            password: null,
+            response: null
         };
         this.handleLogin = this.handleLogin.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
 
-    handleLogin(event) {
+    handleLogin(e) {
         fetch('/user/login', {
             method: 'POST',
             headers: {
@@ -24,6 +25,8 @@ class Login extends Component {
             })
         })
             .then((res) => {
+                //make sure you return functions that returns promises
+                //to chain .then statements
                 return res.json();
             })
             .then((res) => {
