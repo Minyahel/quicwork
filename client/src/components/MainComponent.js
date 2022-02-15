@@ -9,6 +9,7 @@ import Signup from './SignupComponent';
 import CreatePost from './CreatePostComponent';
 import SinglePost from './SinglePostComponent';
 import { connect } from 'react-redux';
+import AuthRoute from './AuthRoute';
 
 class Main extends Component {
     constructor(props) {
@@ -27,7 +28,9 @@ class Main extends Component {
         fetch('/user/checkSession')
             .then((res) => res.json())
             .then((res) => {
-                if (res.message === true) {
+                //using quotations for true since .json() doesn't convert to
+                //boolean
+                if (res.message === 'true') {
                     this.props.dispatch({
                         type: 'LOGIN'
                     });
@@ -49,11 +52,30 @@ class Main extends Component {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home posts={posts} />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
-                    {this.props.activeSession && (
-                        <Route path="/createpost" element={<CreatePost />} />
-                    )}
+                    <Route
+                        path="/login"
+                        element={
+                            <AuthRoute redirect="true" to="/">
+                                <Login />
+                            </AuthRoute>
+                        }
+                    />
+                    <Route
+                        path="/signup"
+                        element={
+                            <AuthRoute redirect="true" to="/">
+                                <Signup />
+                            </AuthRoute>
+                        }
+                    />
+                    <Route
+                        path="/createpost"
+                        element={
+                            <AuthRoute redirect="false" to="/">
+                                <CreatePost />
+                            </AuthRoute>
+                        }
+                    />
                     <Route path="/post/:postId" element={<SinglePost />} />
                 </Routes>
                 <Footer />

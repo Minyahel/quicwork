@@ -20,20 +20,23 @@ export default (props) => {
         }
     }, [activeSession]);
 
+    console.log(activeSession);
     return (
         <div>
             <nav style={{ display: 'inline', margin: 'auto' }}>
                 <Link to="/">quicWork</Link>
-                {!activeSession && <Link to="/login">Login</Link>}
-                <Link to="/signup">Sign Up</Link>
 
+                {!activeSession && <Link to="/login">Login</Link>}
+                {!activeSession && <Link to="/signup">Sign Up</Link>}
                 {activeSession && (
                     <>
                         <Link to="/createpost">Create Post</Link>
                         <Link
                             to="/"
                             onClick={() => {
-                                activeSession = false;
+                                dispatch({
+                                    type: 'LOGOUT'
+                                });
                             }}
                         >
                             Log out

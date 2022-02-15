@@ -13,6 +13,7 @@ const reducer = (state = initialState, action) => {
                 activeSession: true
             };
         case 'LOGOUT':
+            console.log('logout called');
             return {
                 ...state,
                 activeSession: false
