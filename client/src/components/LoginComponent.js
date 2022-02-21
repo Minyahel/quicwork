@@ -31,7 +31,7 @@ class Login extends Component {
                 return res.json();
             })
             .then((res) => {
-                console.log('Calling login');
+                console.log(res);
                 this.props.dispatch({
                     type: 'LOGIN'
                 });

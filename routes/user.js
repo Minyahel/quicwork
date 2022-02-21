@@ -25,13 +25,11 @@ router
         //if already logged in, no need to do it again
         // TODO handle login whilst already logged in properly
         if (req.session.userId) {
-            next(customException(208, 'User already logged in'));
-            return;
+            return next(customException(208, 'User already logged in'));
         }
         //check if required data for logging in has been provided
         if (!req.body.email || !req.body.password)
-            next(customException(400, 'Missing Username or Password'));
-
+            return next(customException(400, 'Missing Username or Password'));
         //find the user based on email given
         User.findOne({ email: req.body.email }, (err, result) => {
             if (err)
@@ -43,10 +41,11 @@ router
                     req.body.password,
                     function (err, result) {
                         //if not the same password hash throw error
-                        if (err)
-                            next(
+                        if (err) {
+                            return next(
                                 customException(400, 'Wrong Email or Password')
                             );
+                        }
                         req.session.userId = user._id;
                         res.status(200).json({
                             message: 'Successfully logged in'
@@ -54,12 +53,13 @@ router
                     }
                 );
             } else {
-                next(customException(400, 'Wrong Email or Password'));
+                return next(customException(400, 'Wrong Email or Password'));
             }
         });
     })
     .post('/logout', (req, res, next) => {
         //destroy the session when logging out
+        console.log('Destroying session');
         req.session.destroy();
         res.status(200).json({ message: 'Successfuly logged out' });
     })

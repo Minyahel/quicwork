@@ -7,20 +7,21 @@ export default (props) => {
     const activeSession = useSelector((state) => state.activeSession);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        function handleLogout(e) {
-            fetch('/user/logout', {
-                method: 'POST'
-            }).then((res) => {
-                if (res.status === 200)
-                    dispatch({
-                        type: 'LOGOUT'
-                    });
-            });
-        }
-    }, [activeSession]);
+    // useEffect(() => {
 
-    console.log(activeSession);
+    // }, [activeSession]);
+
+    function handleLogout(e) {
+        fetch('/user/logout', {
+            method: 'POST'
+        }).then((res) => {
+            if (res.status === 200)
+                dispatch({
+                    type: 'LOGOUT'
+                });
+        });
+    }
+
     return (
         <div>
             <nav style={{ display: 'inline', margin: 'auto' }}>
@@ -31,14 +32,7 @@ export default (props) => {
                 {activeSession && (
                     <>
                         <Link to="/createpost">Create Post</Link>
-                        <Link
-                            to="/"
-                            onClick={() => {
-                                dispatch({
-                                    type: 'LOGOUT'
-                                });
-                            }}
-                        >
+                        <Link to="/" onClick={handleLogout}>
                             Log out
                         </Link>
                     </>

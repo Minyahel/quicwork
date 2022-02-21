@@ -24,6 +24,7 @@ module.exports = {
         //if a session has not been created for the user
         if (!req.session.userId)
             return next(customException(403, 'User Not Logged In'));
+
         next();
     }
 };
