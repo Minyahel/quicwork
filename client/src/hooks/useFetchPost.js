@@ -6,7 +6,7 @@ function useFetchPost(url) {
     useEffect(() => {
         fetch(url)
             .then((res) => {
-                res.json();
+                return res.json();
             })
             .then((res) => {
                 setPost(res);

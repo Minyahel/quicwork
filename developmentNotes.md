@@ -37,7 +37,7 @@
 * Actual function of next() needs to be checked as well 
 - [x] Improve mongoose usages of unnecessary saves to update
 - [x] Improve error reporting from the server side
-- [ ] Implement Some more routes for the client
+- [x] Implement Some more routes for the client
 - [x] work on displaying individual post
 - [ ] Implement custom hooks for loading data
 - [ ] Need to attach username to comment object for easy access
@@ -46,8 +46,10 @@
 - [ ] Implement error receiving and reporting from the client side
 - [ ] Evaluate where you need to implement catch cases(in server)
 - [ ] Implement redux store for managing user signed in status and global states
-- [ ] protect the react routes based on login in a clean way
-- [ ] refresh date on page changes 
+- [x] protect the react routes based on login in a clean way
+- [ ] refresh data on page changes 
+- [ ] show signup error data and login error data
+- [ ] redirect to home on login
 ## :bug: Bugs 
 ***
 - 🚩 Potential Bug with login logic
