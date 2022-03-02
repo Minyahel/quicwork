@@ -2,7 +2,7 @@
 
 ## Documentation and Description
 
-quicWork is intended to work as a simple method for jacobs students to share info about job openings that usually only require english and no prior experience. It is _intended_ to run as a community-curated site.
+quicWork is intended to work as a simple platform for sharing info about job openings that usually only require english and no prior experience. It is _intended_ to run as a community-curated site.
 
 ---
 
